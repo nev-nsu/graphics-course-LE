@@ -41,7 +41,7 @@ bool TLines::HasFilename() const {
 bool TLines::Load(std::string&& filename) {
     Filename = std::move(filename);
     Filename.replace_extension(fileExt);
-    Lines.clear();
+    std::vector<TLineShape> temporaryData;
 
     std::ifstream input(Filename);
     if (!input.is_open() || !input.good()) {
@@ -51,15 +51,16 @@ bool TLines::Load(std::string&& filename) {
     try {
         ui32 count;
         input >> count;
-        Lines.reserve(count);
+        temporaryData.reserve(count);
 
         for (; count > 0; count--) {
-            Lines.push_back(ParseLineShape(input));
+            temporaryData.push_back(ParseLineShape(input));
         }
     } catch (...) {
         return false;
     }
 
+    Lines = std::move(temporaryData);
     return true;
 }
 
