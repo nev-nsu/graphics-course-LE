@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/Images">
+    <file>document-open.png</file>
+    <file>edit-undo.png</file>
+    <file>help-faq.png</file>
+    <file>document-save.png</file>
+    <file>list-add.png</file>
+  </qresource>
+</RCC>
